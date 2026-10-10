@@ -57,6 +57,8 @@ This lab teaches you to:
 
 ## 2. Architecture
 
+![FastAPI on Kubernetes Architecture](architecture.png)
+
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
 │  Your Windows Machine                                                 │
