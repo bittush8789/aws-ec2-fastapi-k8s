@@ -1,0 +1,19 @@
+# kind cluster configuration
+# Documentation: https://kind.sigs.k8s.io/docs/user/configuration/
+apiVersion: kind.x-k8s.io/v1alpha4
+kind: Cluster
+
+nodes:
+  # Control-plane node: runs kube-apiserver, etcd, scheduler, controller-manager
+  - role: control-plane
+    kubeadmConfigPatches:
+      - |
+        kind: InitConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            eviction-hard: "memory.available<200Mi,nodefs.available<5%"
+            eviction-soft: "memory.available<500Mi"
+            eviction-soft-grace-period: "memory.available=30s"
+
+  # Worker node: runs application workloads (Pods)
+  - role: worker
